@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   # it should allow our app to create a new borrower account
   post 'online_lending/borrower' => 'borrowers#create'
 
+  # it should authenticate users
+  post 'online_lending/login' => 'sessions#create'
+
   # it should allow our users to login
   get 'online_lending/login' => 'transactions#login'
 
