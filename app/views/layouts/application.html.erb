@@ -8,6 +8,10 @@
 </head>
 <body>
 
+<% unless session.nil? %>
+<a href="/logout">Logout</a> <br />
+<% end %>
+
 <%= yield %>
 
 </body>

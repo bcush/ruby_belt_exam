@@ -1,0 +1,13 @@
+<fieldset>
+  <legend>Login</legend>
+  <form action="/online_lending/login" type="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  Email: <input type="email" name="email">
+  Password: <input type="password" name="password">
+  <a href="/">Click here to register</a> <input type="submit" name="Login">
+  </form>
+</fieldset>
+
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>

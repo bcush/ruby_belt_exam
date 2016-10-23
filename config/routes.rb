@@ -1,9 +1,32 @@
 Rails.application.routes.draw do
+
+  # it should allow our root folder to display session register view
+  root 'sessions#new'
+
+  # it should allow our app to create a new lender account
+  post 'online_lending/lender' => 'lenders#create'
+
+  # it should allow our app to create a new borrower account
+  post 'online_lending/borrower' => 'borrowers#create'
+
+  # it should allow our users to login
+  get 'online_lending/login' => 'transactions#login'
+
+  # it should allow our lenders to lend
+  post 'online_lending/lender/:id' => 'transactions#lend_money'
+
+  # it should allow our lenders to see what is transactions are available
+  get 'online_lending/lender/:id' => 'transactions#lender_show'
+
+  # it should allow our borrowers to see their lending amounts
+  get 'online_lending/borrower/:id' => 'transactions#borrower_show'
+
   get 'sessions/new'
 
   get 'sessions/create'
 
-  get 'sessions/destroy'
+  # it should allow our user to logout
+  get '/logout' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
