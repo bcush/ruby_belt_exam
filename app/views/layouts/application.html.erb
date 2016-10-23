@@ -8,10 +8,6 @@
 </head>
 <body>
 
-<% if session[:lender_id] || session[:borrower_id] %>
-<a href="/logout">Logout</a>
-<% end %>
-
 <%= yield %>
 
 </body>
