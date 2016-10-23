@@ -36,7 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'hirb'
 
 # Use rails-footnotes cause it's boooosssssssssss
-gem 'rails-footnotes'
+# gem 'rails-footnotes'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
