@@ -1,4 +1,7 @@
 class TransactionsController < ApplicationController
+
+before_action :require_login, only: [:lender_show, :lend_money, :borrower_show]
+
   def login
     b = Borrower.find_by_email(params[:email])
     l = Lender.find_by_email(params[:email])
@@ -21,10 +24,10 @@ class TransactionsController < ApplicationController
     @current_lender = Lender.find(session[:lender_id])
     @current_lender.update(money:@current_lender.money-params[:lend_amount].to_i)
     @current_borrower = Borrower.find(params[:current_borrower])
-    if @current_borrower.raised.nil?
-      @current_borrower.update(raised:params[:lend_amount].to_i)
-    else
+    if (@current_lender.money - params[:lend_amount].to_i) > 0
       @current_borrower.update(raised:@current_borrower.raised + params[:lend_amount].to_i)
+    else
+      flash[:error] = "You cannot loan any more money."
     end
 
     @transaction = Transaction.create(amount: params[:lend_amount].to_i, lender:@current_lender, borrower:@current_borrower)
